@@ -96,8 +96,8 @@ router.get('/register', checkNotAuthenticated, (req, res) => {
 
 router.post('/register', checkNotAuthenticated, async (req, res) => {
     try {
-        const same_user = await User.findOne({email:req.body.email})
-        if (same_user != null) {
+        const u = await User.findOne({email:req.body.email})
+        if (u != null) {
             res.redirect('/register?e=1')
             return
         }
