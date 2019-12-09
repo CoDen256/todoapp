@@ -1,0 +1,41 @@
+<h2 style="padding-left: 50px;"> Your ToDo list:</h2>
+
+
+<div class="list">
+{{#if todos.length}}
+<ul style="list-style-type:none">
+ {{#each todos}}
+    <li class="todo">
+        <form method="POST">
+            <label>
+                {{#if completed}}
+                <input type="checkbox" checked name="completed">
+                <span class="completed">{{title}}</span>
+                {{else}}
+                <input type="checkbox" name="completed">
+                <span>{{title}}</span>
+                {{/if}}
+
+                <div class="btn-group">
+                    <input type="hidden" value="{{_id}}" name="id">
+                    <button class="btn btn-success btn-block" type="submit" formaction="/complete">Save</button>
+
+                    <input type="hidden" value="{{_id}}" name="id">
+                    <button class="btn btn-success btn-danger" type="submit" formaction="/delete">Delete</button>
+                </div>
+            </span>
+            </label>
+        </form>
+    </li>
+ {{/each}}
+</ul>
+{{else}}
+<p>No todos!</p>
+{{/if}}
+</div>
+
+<form action="/create" method="GET">
+<button id="create-new" type="submit" class="btn btn-success btn-circle btn-xl">
+New +
+</button> 
+</form>

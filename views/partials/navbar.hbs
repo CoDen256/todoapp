@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <span class="navbar-brand mb-0 h1">ToDoApp</span>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      {{#if isIndex}}
+      <li class="nav-item active">
+        <a class="nav-link" href="/">ToDos</a>
+      </li>
+      {{else}}
+      <li class="nav-item">
+        <a class="nav-link" href="/">ToDos</a>
+      </li>
+      {{/if}}
+
+      {{#if isCreate}}
+      <li class="nav-item active">
+        <a class="nav-link" href="/create">Create</a>
+      </li>
+      {{else}}
+      <li class="nav-item">
+        <a class="nav-link" href="/create">Create</a>
+      </li>
+      {{/if}}
+    </ul>
+  </div>
+  {{#if user}}
+  <div class="collapse navbar-collapse" id="navbarAccount" style="right:1%;position:absolute">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="navbar-brand" href="#"><b>{{user.name}}</b></a>
+      </li>
+
+      <form action="/logout" method="POST" class="form-inline">
+        <button class="btn btn-sm btn-outline-primary" type="submit">Logout</button>
+      </form>
+      
+    </ul>
+  </div>
+  {{/if}}
+</nav>
