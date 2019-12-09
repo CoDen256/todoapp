@@ -96,11 +96,12 @@ router.get('/register', checkNotAuthenticated, (req, res) => {
 
 router.post('/register', checkNotAuthenticated, async (req, res) => {
     try {
-        const u = await User.findOne({email:req.body.email})
-        if (u != null) {
+        const same_user = await User.findOne({email:req.body.email})
+        if (same_user != null) {
             res.redirect('/register?e=1')
             return
         }
+
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
         const user = new User({
             name: req.body.name,
