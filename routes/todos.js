@@ -40,15 +40,20 @@ router.get('/create', checkAuthenticated, (req, res) => {
     res.render('create', {
         title: 'Create todo',
         user: req.user,
-        isCreate: true
+        isCreate: true,
+        error: req.query.e
     })
 })
 
 
 router.post('/create', async (req, res) => {
+    if (!req.body.title){
+        res.redirect("/create?e=1")
+        return
+    }
     const todo = new Todo({
         title: req.body.title,
-        user: req.user
+        user: req.user,
     })
     await todo.save()
     res.redirect('/')

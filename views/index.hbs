@@ -1,8 +1,6 @@
-<h2 style="padding-left: 50px;"> Your ToDo list:</h2>
-
-
-<div class="list">
 {{#if todos.length}}
+<h1 style="padding-left: 50px; padding-top:25px;"> Your ToDo list:</h1>
+<div class="list">
 <ul style="list-style-type:none">
  {{#each todos}}
     <li class="todo">
@@ -29,8 +27,16 @@
     </li>
  {{/each}}
 </ul>
+</div>
 {{else}}
-<p>No todos!</p>
+<div class="alert alert-info" role="alert" style="margin-top: 8%;">
+  <h4 class="alert-heading">No ToDos!</h4>
+  <p>
+  Seems like you haven't created any todos yet. <br>
+  <a href="/create" class="alert-link"> 
+  Click here to create new todos.</a>
+  </p>
+</div>
 {{/if}}
 </div>
 

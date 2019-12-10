@@ -2,7 +2,12 @@
 <h2> Create Todo </h2>
 
 <div>    
+    {{#if error}}
+    <label class="text-danger">The ToDo is empty</label>
     <input class="form-control form-control-lg" type="text" placeholder="Pet a cat" name="title">
+    {{else}}
+    <input class="form-control form-control-lg" type="text" placeholder="Pet a cat" name="title">
+    {{/if}}
     <small class="form-text text-muted">ToDo will be added to the list</small>
 </div>
 
