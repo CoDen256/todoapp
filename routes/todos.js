@@ -1,11 +1,12 @@
 const {Router} = require('express')
-const Todo = require('../models/Todo')
+const Task = require('../models/Task')
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
 const router = Router()
 const passport = require('passport')
 
 const intializePassport = require('../passport-config')
+const types = ["To do", "In progress", "Testing", "Done"]
 intializePassport(
     passport, 
     async e => User.findOne({email: e}),
@@ -26,22 +27,36 @@ function checkNotAuthenticated(req, res, next){
     next()
 }
 
+function getNum(type){
+    var i = 0
+    for (; i < types.length; i++){
+        if (types[i] === type){
+            return i
+        }
+    }
+}
+
+function getType(value){
+    return types[value]
+}
+
 router.get('/', checkAuthenticated, async (req, res) => {
-    const todos = await Todo.find({user: req.user})
+    const tasks = await Task.find({user: req.user})
     res.render('index', {
-        title: 'Todo',
+        title: 'Tasks',
         isIndex: true,
         user: req.user,
-        todos: todos
+        tasks: tasks
     })
 })
 
 router.get('/create', checkAuthenticated, (req, res) => {
     res.render('create', {
-        title: 'Create todo',
+        title: 'Create task',
         user: req.user,
         isCreate: true,
-        error: req.query.e
+        error: req.query.e,
+        types: types
     })
 })
 
@@ -51,30 +66,31 @@ router.post('/create', async (req, res) => {
         res.redirect("/create?e=1")
         return
     }
-    const todo = new Todo({
+    const task = new Task({
         title: req.body.title,
         user: req.user,
+        type: getNum(req.body.taskType),
     })
-    await todo.save()
+    await task.save()
     res.redirect('/')
 })
 
 router.post('/complete', async (req, res) => {
-    const todo = await Todo.findById(req.body.id)
+    const task = await Task.findById(req.body.id)
 
-    todo.completed = true
+    task.completed = true
 
-    todo.completed = !!req.body.completed
+    task.completed = !!req.body.completed
 
-    await todo.save()
+    await task.save()
 
     res.redirect('/')
 })
 
 router.post('/delete', async (req, res) => {
-    const todo = await Todo.findById(req.body.id)
+    const task = await Task.findById(req.body.id)
 
-    todo.deleteOne()
+    task.deleteOne()
     res.redirect('/')
 })
 

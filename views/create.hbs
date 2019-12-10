@@ -1,12 +1,22 @@
 <form action="/create" method="POST" class="createToDo">
-<h2> Create Todo </h2>
+<h2> Create a Task </h2>
 
-<div>    
+<div class="task-name">    
     {{#if error}}
-    <label class="text-danger">The ToDo is empty</label>
+    <label class="text-danger">The task name is empty</label>
+    {{else}}
+    <label for "task-name">Name of the task</label>
     {{/if}}
-    <input class="form-control form-control-lg" type="text" placeholder="Pet a cat" name="title">
-    <small class="form-text text-muted">ToDo will be added to the list</small>
+    <input class="form-control form-control-lg" type="text" placeholder="Pet a cat" name="title"/>
+    <small class="form-text text-muted">Task will be added to the list</small>
+</div>
+<div class="form-group">
+    <label class="task-type" for="task-type">Select current state of the task</label>
+    <select name="taskType" class="form-control">
+      {{#each types}}
+      <option>{{this}}</option>
+      {{/each}}
+    </select>
 </div>
 <button  type="submit" class="btn btn-primary">Create</button>
 </form>

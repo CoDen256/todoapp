@@ -1,5 +1,5 @@
 const {Schema, model} = require('mongoose')
-const userSchema = require('../models/User').Schema
+const userSchema = require('./User').Schema
 
 const schema = new Schema({
     title: {
@@ -13,8 +13,13 @@ const schema = new Schema({
     user: {
         type: userSchema,
         required:true
+    },
+
+    type: {
+        type: Number,
+        default:0
     }
 
 })
 
-module.exports = model('Todo', schema)
+module.exports = model('Task', schema)

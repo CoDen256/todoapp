@@ -1,9 +1,9 @@
-{{#if todos.length}}
-<h1 style="padding-left: 50px; padding-top:25px;"> Your ToDo list:</h1>
+{{#if tasks.length}}
+<h1 style="padding-left: 50px; padding-top:25px;"> Your Task list:</h1>
 <div class="list">
 <ul style="list-style-type:none">
- {{#each todos}}
-    <li class="todo">
+{{#each tasks}}
+    <li class="task">
         <form method="POST">
             <label>
                 {{#if completed}}
@@ -30,11 +30,11 @@
 </div>
 {{else}}
 <div class="alert alert-info" role="alert" style="margin-top: 8%;">
-  <h4 class="alert-heading">No ToDos!</h4>
+  <h4 class="alert-heading">No Tasks!</h4>
   <p>
-  Seems like you haven't created any todos yet. <br>
+  Seems like you haven't created any tasks yet. <br>
   <a href="/create" class="alert-link"> 
-  Click here to create new todos.</a>
+  Click here to create new tasks.</a>
   </p>
 </div>
 {{/if}}
