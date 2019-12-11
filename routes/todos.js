@@ -75,17 +75,6 @@ router.post('/create', async (req, res) => {
     res.redirect('/')
 })
 
-router.post('/complete', async (req, res) => {
-    const task = await Task.findById(req.body.id)
-
-    task.completed = true
-
-    task.completed = !!req.body.completed
-
-    await task.save()
-
-    res.redirect('/')
-})
 
 router.post('/delete', async (req, res) => {
     const task = await Task.findById(req.body.id)
@@ -94,6 +83,27 @@ router.post('/delete', async (req, res) => {
     res.redirect('/')
 })
 
+
+router.post('/higher', async (req, res) => {
+    const task = await Task.findById(req.body.id)
+
+    task.type += 1
+
+    console.log("In higher: " + task.type + " " + task.title + " " + task._id)
+
+    await task.save()
+    res.redirect('/')
+})
+
+router.post('/lower', async (req, res) => {
+    const task = await Task.findById(req.body.id)
+
+    task.type -= 1
+
+    console.log("In lower: " + task.type + " " + task.title + " "+ task._id)
+    await task.save()
+    res.redirect('/')
+})
 
 router.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login', {

@@ -2,8 +2,14 @@
 
 <body>
 {{> navbar}}
+{{#if isIndex}}
+    <div>
+        {{{ body }}}
+    </div>
+{{else}}
     <div class="container">
         {{{ body }}}
     </div>
+{{/if}}
 </body>
 </html>

@@ -8,12 +8,16 @@ const session =  require('express-session')
 const passport = require('passport')
 
 const exhbs = require("express-handlebars")
+const hbshelpers = require('handlebars-helpers');
+
 const todoRoutes = require('./routes/todos')
 
 const app = express();
+const multihelpers = hbshelpers();
 const hbs = exhbs.create({
     defaultLayout: 'main',
-    extname: 'hbs'
+    extname: 'hbs',
+    helpers: multihelpers
 })
 
 

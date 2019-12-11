@@ -6,10 +6,6 @@ const schema = new Schema({
         type: String,
         required:true,
     },
-    completed: {
-        type: Boolean,
-        default: false
-    },
     user: {
         type: userSchema,
         required:true
@@ -18,6 +14,11 @@ const schema = new Schema({
     type: {
         type: Number,
         default:0
+    },
+
+    priority: {
+        type: Number,
+        default: 0
     }
 
 })
