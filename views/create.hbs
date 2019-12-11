@@ -5,18 +5,32 @@
     {{#if error}}
     <label class="text-danger">The task name is empty</label>
     {{else}}
-    <label for "task-name">Name of the task</label>
+    <label for="task-name">Name</label>
     {{/if}}
-    <input class="form-control form-control-lg" type="text" placeholder="Pet a cat" name="title"/>
+    <input class="form-control form-control-lg" type="text" placeholder="Pet a cat" name="title" maxlength="25"/>
     <small class="form-text text-muted">Task will be added to the list</small>
 </div>
 <div class="form-group">
-    <label class="task-type" for="task-type">Current state of the task</label>
+    <label class="task-type" for="task-type">Current state</label>
     <select name="taskType" class="form-control form-control-lg">
-      {{#each types}}
+      {{#eachIndex types}}
+      {{#is index ../preselected}}
+      <option selected>{{item}}</option>
+      {{else}}
+      <option>{{item}}</option>
+      {{/is}}
+      {{/eachIndex}}
+    </select>
+</div>
+<div class="form-group">
+    <label class="task-priority" for="task-priority">Priority</label>
+    <select name="taskPriority" class="form-control form-control-lg">
+      {{#each priors}}
       <option>{{this}}</option>
       {{/each}}
     </select>
 </div>
+
 <button  type="submit" class="btn btn-primary">Create</button>
+
 </form>

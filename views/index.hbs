@@ -2,94 +2,64 @@
 <div class="row types">
     <div class="col-sm">
         <div class="alert alert-info"><h1 class="alert-heading">To do</h1></div>
+
+        <form action="/create" method="GET">
+        <input type="hidden" name="t" value="0"/>
+        <button type="submit" class="btn btn-info add">Add new task +</button>
+        </form>
+
         <hr>
         <div class="list-group">
         {{#each tasks}}
-        {{#is type 0}}
-            <form method="POST">
-            <div class="list-group-item list-group-item-action list-group-item-primary task">
-                <span class="title">{{title}}</span>
-
-                <span class="arrow-btn">
-                    <input type="hidden" value="{{_id}}" name="id">
-                    <button type="submit" class="btn btn-success" formaction="/higher" style="float:right;"></button>
-                </span>
-            </div>   
-            </form>
-        {{/is}}
+        {{#is type 0}} {{> task}} {{/is}}
         {{/each}}
         </div>
     </div>
 
     <div class="col-sm">
         <div class="alert alert-danger"><h1 class="alert-heading">Developing</h1></div>
+        
+        <form action="/create" method="GET">
+        <input type="hidden" name="t" value="1"/>
+        <button type="submit" class="btn btn-danger add">Add new task +</button>
+        </form>
+
         <hr>
         <div class="list-group">
         {{#each tasks}}
-        {{#is type 1}}
-        <form method="POST">
-            <div class="list-group-item list-group-item-action list-group-item-primary task">
-                <span class="arrow-btn">
-                    <input type="hidden" value="{{_id}}" name="id">
-                    <button type="submit" class="btn btn-danger" formaction="/lower" style="float:left;"></button>
-                </span>
-
-                <span class="title">{{title}}</span>
-
-                <span class="arrow-btn">
-                    <input type="hidden" value="{{_id}}" name="id">
-                    <button type="submit" class="btn btn-success" formaction="/higher" style="float:right;"></button>
-                </span>
-            </div>     
-        </form>
-        {{/is}}
+        {{#is type 1}} {{> task}} {{/is}}
         {{/each}}
         </div>
     </div>
 
     <div class="col-sm">
         <div class="alert alert-warning"><h1 class="alert-heading">Testing</h1></div>
+        
+        <form action="/create" method="GET">
+        <input type="hidden" name="t" value="2"/>
+        <button type="submit" class="btn btn-warning add">Add new task +</button>
+        </form>
+
         <hr>
         <div class="list-group">
         {{#each tasks}}
-        {{#is type 2}}
-        <form method="POST">
-            <div class="list-group-item list-group-item-action list-group-item-primary task">
-                <span class="arrow-btn">
-                    <input type="hidden" value="{{_id}}" name="id">
-                    <button type="submit" class="btn btn-danger" formaction="/lower" style="float:left;"></button>
-                </span>
-
-                <span class="title">{{title}}</span>
-
-                <span class="arrow-btn">
-                    <input type="hidden" value="{{_id}}" name="id">
-                    <button type="submit" class="btn btn-success" formaction="/higher" style="float:right;"></button>
-                </span>
-            </div>  
-        </form> 
-        {{/is}}
+        {{#is type 2}} {{> task}} {{/is}}
         {{/each}}
         </div>
     </div>
 
     <div class="col-sm">
         <div class="alert alert-success"><h1 class="alert-heading">Done</h1></div>
+
+        <form action="/create" method="GET">
+        <input type="hidden" name="t" value="3"/>
+        <button type="submit" class="btn btn-success add">Add new task +</button>
+        </form>
+        
         <hr>
         <div class="list-group">
         {{#each tasks}}
-        {{#is type 3}}
-        <form method="POST">
-            <div class="list-group-item list-group-item-action list-group-item-primary task">
-                <span class="arrow-btn">
-                    <input type="hidden" value="{{_id}}" name="id">
-                    <button type="submit" class="btn btn-danger" formaction="/lower" style="float:left;"></button>
-                </span>
-
-                <span class="title">{{title}}</span>
-            </div>   
-        </form>
-        {{/is}}
+        {{#is type 3}} {{> task}} {{/is}}
         {{/each}}
         </div>
     </div>
@@ -107,9 +77,3 @@
 </div>
 {{/if}}
 </div>
-
-<form action="/create" method="GET">
-<button id="create-new" type="submit" class="btn btn-success btn-circle btn-xl">
-New +
-</button> 
-</form>

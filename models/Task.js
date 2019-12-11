@@ -17,10 +17,9 @@ const schema = new Schema({
     },
 
     priority: {
-        type: Number,
-        default: 0
-    }
-
+        type: String,
+        default: "secondary"
+    },
 })
 
 module.exports = model('Task', schema)

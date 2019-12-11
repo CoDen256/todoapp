@@ -1,0 +1,30 @@
+<form method="POST">
+    <div class="list-group-item list-group-item-action list-group-item-{{priority}} task" >
+
+            {{#eq type 0}}
+            <span class="arrow-btn">
+                <input type="hidden" value="{{_id}}" name="id">
+                <button type="submit" class="btn btn-danger" formaction="/delete" style="float:left;" title="Remove"></button>
+            </span>
+            {{else}}
+            <span class="arrow-btn">
+                <input type="hidden" value="{{_id}}" name="id">
+                <button type="submit" class="btn btn-primary" formaction="/lower" style="float:left;" title="To previous stage"></button>
+            </span>
+            {{/eq}}
+            
+            <span class="title">{{title}}</span>
+
+            {{#eq type 3}}
+            <span class="arrow-btn">
+                <input type="hidden" value="{{_id}}" name="id">
+                <button type="submit" class="btn btn-danger" formaction="/delete" style="float:right;" title="Remove"></button>
+            </span>
+            {{else}}
+            <span class="arrow-btn">
+                <input type="hidden" value="{{_id}}" name="id">
+                <button type="submit" class="btn btn-success" formaction="/higher" style="float:right;" title="To next stage"></button>
+            </span>
+            {{/eq}}
+    </div>   
+</form>
